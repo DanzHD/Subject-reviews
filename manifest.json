@@ -3,11 +3,19 @@
   "description": "Shows StudentVIP subject rating alongside subjects in the course listing page on mouse hovering",
   "manifest_version": 3, 
   "version": "0.0.1",
-  "host_permissions": ["https://handbook.unimelb.edu.au/*", "https://studentvip.com.au/*"],
+  "host_permissions": ["https://studentvip.com.au/*", "https://handbook.unimelb.edu.au/*"],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
   "content_scripts": [
     {
-      "matches": ["https://handbook.unimelb.edu.au/*", "https://studentvip.com.au/*"],
+      "matches": [
+        "https://studentvip.com.au/*", 
+        "https://handbook.unimelb.edu.au/*"
+      ],
       "js": ["jquery-3.7.0.min.js", "script.js"]
     }
   ]
+
 }
