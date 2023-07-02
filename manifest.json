@@ -14,7 +14,8 @@
         "https://studentvip.com.au/*", 
         "https://handbook.unimelb.edu.au/*"
       ],
-      "js": ["jquery-3.7.0.min.js", "script.js"]
+      "js": ["jquery-3.7.0.min.js", "script.js"], 
+      "css": ["styles.css"]
     }
   ]
 

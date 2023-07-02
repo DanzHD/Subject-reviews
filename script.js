@@ -6,21 +6,29 @@ function AddSubjectListeners() {
   listings.forEach((listing) => {
     let code = listing.querySelector('.search-result-item__header .search-result-item__code').textContent.toString();
     if (!isSubject(code)) return;
+    let subjectURL = baseURL + code;
+    let rating = getRating(subjectURL);
+    rating.then((subjectRating) => {
+      let container = document.createElement('span');
 
-    if (!listing.getAttribute('listener')) {
-      listing.addEventListener('mouseover', () => {
-        let code = listing.querySelector('.search-result-item__header .search-result-item__code').textContent.toString();
-        console.log(code);
-        let subjectURL = baseURL + code;
-        let rating = getRating(subjectURL);
-        rating.then ((a) => {
-          console.log(a);
-        });
+      if (subjectRating) container.textContent = `Rating: ${subjectRating}/5\n`
+      else container.textContent = `Rating: No reviews`;
+      
+      container.setAttribute('style', 'opacity: 0;');
+      let header = listing.querySelector(".search-result-item__header .search-result-item__name");
+      container.classList.add("added");
+      let added = listing.querySelector(".added");
+      if (!added) {
+        header.append(container);
+      }
+    });
 
+    $(listing).on("mouseenter", () => {
+      listing.querySelector(".added").setAttribute('style', 'opacity: 1;');
+    }).on("mouseleave", () => {
+      listing.querySelector(".added").setAttribute('style', 'opacity: 0;');
+    });
 
-      });
-      listing.setAttribute('listener', true);
-    }
   });
 }
 AddSubjectListeners();
