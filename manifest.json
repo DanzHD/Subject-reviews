@@ -1,9 +1,8 @@
 {
   "name": "University Subject Reviews", 
-  "description": "Shows StudentVIP subject rating alongside subjects in the course listing page on mouse hovering",
+  "description": "Shows StudentVIP subject rating alongside subjects in the University of Melbourne subject listing page on mouse hovering",
   "manifest_version": 3, 
   "version": "0.0.1",
-  "host_permissions": ["https://studentvip.com.au/*", "https://handbook.unimelb.edu.au/*"],
   "background": {
     "service_worker": "background.js",
     "type": "module"
