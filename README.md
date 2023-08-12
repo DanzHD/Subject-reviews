@@ -4,4 +4,4 @@ This is a Google Chrome Extension that scrapes subject reviews for subjects at t
 
 Link to project: https://chrome.google.com/webstore/detail/university-subject-review/plgdjikkfpejbboloecmbblijgjpcehd?hl=en&authuser=1
 
-![Demonstration](https://github.com/DanzHD/Subject-reviews/assets/120297386/a9bc428e-113c-4ed1-8bac-ab676f51b3f0)
+![Demonstration](https://github.com/DanzHD/Subject-reviews/assets/120297386/d834781b-b492-4fcf-ba8a-be832399ddd8)
