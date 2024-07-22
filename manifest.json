@@ -2,7 +2,7 @@
   "name": "University Subject Reviews", 
   "description": "Shows StudentVIP subject rating alongside subjects in the University of Melbourne subject listing page on mouse hovering",
   "manifest_version": 3, 
-  "version": "0.0.1",
+  "version": "0.0.2",
   "background": {
     "service_worker": "background.js",
     "type": "module"
