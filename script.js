@@ -1,7 +1,7 @@
 $(function() {
 
   const baseURL = "https://studentvip.com.au/unimelb/subjects/";
-  function AddSubjectListeners() {
+  function addSubjectListeners() {
     let listings = document.querySelectorAll(".search-result-item__anchor");
     listings.forEach((listing) => {
       let code = listing.querySelector('.search-result-item__header .search-result-item__code').textContent.toString();
@@ -11,9 +11,12 @@ $(function() {
       rating.then((subjectRating) => {
         let container = document.createElement('span');
 
-        if (subjectRating) container.setHTML(`Rating: ${subjectRating}/5 <br> <a href="${subjectURL}">Details</a>`);
-        else container.setHTML(`Rating: No reviews`);
-        
+        if (subjectRating) {
+          container.innerHTML = `Rating: ${subjectRating}/5 <br> <a href="${subjectURL}">Details</a>`;
+        } else {
+          container.innerHTML = `No Reviews found`
+        }
+
         container.setAttribute('style', 'opacity: 0;');
         let header = listing.querySelector(".search-result-item__header .search-result-item__name");
         container.classList.add("added");
@@ -31,16 +34,17 @@ $(function() {
 
     });
   }
-  AddSubjectListeners();
+
+  addSubjectListeners();
   /* Adds listeners on when new subjects appear */
   const wrapper = document.querySelector('.search-results-wrapper');
   const config = {attributes: true, attributeFilter: ['class']};
-  const obsever = new MutationObserver( (mutations) => {
+  const observer = new MutationObserver( (mutations) => {
     mutations.forEach( () => {
-      AddSubjectListeners();
+      addSubjectListeners();
     })
   });
-  if (wrapper) obsever.observe(wrapper, config);
+  if (wrapper) observer.observe(wrapper, config);
 
   async function getReviewsRating(docText) {
     
@@ -67,15 +71,13 @@ $(function() {
 
   async function getRating(subjectURL) {
     const responseText = await chrome.runtime.sendMessage({url: subjectURL});
-    let rating = getReviewsRating(responseText.doc);
-    
-    return rating;
-  };
+    return getReviewsRating(responseText.doc);
+  }
 
 
   function isSubject(code) {
     const CODE_LENGTH = 9
-    if (code.length != CODE_LENGTH) {
+    if (code.length !== CODE_LENGTH) {
       return false;
     }
 
@@ -85,9 +87,7 @@ $(function() {
     }
 
     // check if all numbers
-    if (isNaN(code.slice(4, 9))) {
-      return false;
-    }
-    return true;
+    return !isNaN(code.slice(4, 9));
+
   }
 });
